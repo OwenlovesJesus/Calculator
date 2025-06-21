@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title> Calculator</title>
+    <link rel="icon" href="images/icon.png" type="image/png">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="inputBox" value="0" readonly />
+    <div class="buttons">
+      <button onclick="digitBtnPressed('7')">7</button>
+      <button onclick="digitBtnPressed('8')">8</button>
+      <button onclick="digitBtnPressed('9')">9</button>
+      <button class="operator" onclick="digitBtnPressed('*')">×</button>
+
+      <button onclick="digitBtnPressed('4')">4</button>
+      <button onclick="digitBtnPressed('5')">5</button>
+      <button onclick="digitBtnPressed('6')">6</button>
+      <button class="operator" onclick="digitBtnPressed('-')">−</button>
+
+      <button onclick="digitBtnPressed('1')">1</button>
+      <button onclick="digitBtnPressed('2')">2</button>
+      <button onclick="digitBtnPressed('3')">3</button>
+      <button class="operator" onclick="digitBtnPressed('+')">+</button>
+
+      <button class="zero" onclick="digitBtnPressed('0')">0</button>
+      <button onclick="clearInput()">AC</button>
+      <button class="operator" onclick="digitBtnPressed('/')">÷</button>
+
+      <button class="equals" onclick="calculateResult()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let newLine = true;
+
+    function digitBtnPressed(button) {
+      const inputBox = document.getElementById("inputBox");
+      if (newLine || inputBox.value === "0") {
+        inputBox.value = button;
+        newLine = false;
+      } else {
+        inputBox.value += button;
+      }
+    }
+
+    function clearInput() {
+      document.getElementById("inputBox").value = "0";
+      newLine = true;
+    }
+
+    function calculateResult() {
+      const inputBox = document.getElementById("inputBox");
+      try {
+        inputBox.value = eval(inputBox.value);
+        newLine = true;
+      } catch {
+        inputBox.value = "Error";
+        newLine = true;
+      }
+    }
+  </script>
+</body>
+</html>
